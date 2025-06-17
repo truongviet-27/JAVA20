@@ -1,4 +1,4 @@
-package com.example.SpringFramework.Repository;
+package com.example.SpringFramework.repository;
 
 import java.util.List;
 
@@ -8,4 +8,5 @@ public interface CoreRepository<T> {
     void create(T t);
     T update(T t);
     void delete (int id);
+    T getByCode(String code);
 }

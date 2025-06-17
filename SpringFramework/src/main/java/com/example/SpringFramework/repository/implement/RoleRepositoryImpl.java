@@ -1,22 +1,19 @@
-package com.example.SpringFramework.Repository.Implement;
+package com.example.SpringFramework.repository.implement;
 
-import com.example.SpringFramework.Model.Role;
-import com.example.SpringFramework.Model.User;
-import com.example.SpringFramework.Repository.CoreRepository;
-import jakarta.persistence.Entity;
+import com.example.SpringFramework.model.Role;
+import com.example.SpringFramework.model.Customer;
+import com.example.SpringFramework.repository.CoreRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Log4j2
 @Repository
-public class RoleImplement implements CoreRepository<Role> {
+public class RoleRepositoryImpl implements CoreRepository<Role> {
     @Autowired
     private EntityManager entityManager;
 
@@ -37,7 +34,7 @@ public class RoleImplement implements CoreRepository<Role> {
         Role roleNew = new Role();
         role.setCode(role.getCode());
         role.setName(role.getName());
-        List<User> users = new ArrayList<>();
+        List<Customer> users = new ArrayList<>();
         entityManager.persist(roleNew);
     }
 
@@ -51,7 +48,15 @@ public class RoleImplement implements CoreRepository<Role> {
 
     @Override
     public void delete(int id) {
-        User userDB = entityManager.find(User.class, id);
+        Customer userDB = entityManager.find(Customer.class, id);
         entityManager.remove(userDB);
+    }
+
+    @Override
+    public Role getByCode(String code) {
+        String jpql = "SELECT r FROM Role r WHERE r.code = :code";
+        Query query = entityManager.createQuery(jpql, Role.class);
+        query.setParameter("code" , code);
+        return (Role) query.getSingleResult();
     }
 }

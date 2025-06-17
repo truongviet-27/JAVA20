@@ -1,9 +1,7 @@
-package com.example.SpringFramework.Controller;
+package com.example.SpringFramework.controller;
 
-import com.example.SpringFramework.Model.Role;
-import com.example.SpringFramework.Model.User;
-import com.example.SpringFramework.Service.RoleService;
-import com.example.SpringFramework.Service.UserService;
+import com.example.SpringFramework.model.Role;
+import com.example.SpringFramework.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,9 +1,8 @@
-package com.example.SpringFramework.Service.Implement;
+package com.example.SpringFramework.service.implement;
 
-import com.example.SpringFramework.Model.Role;
-import com.example.SpringFramework.Model.User;
-import com.example.SpringFramework.Repository.CoreRepository;
-import com.example.SpringFramework.Service.RoleService;
+import com.example.SpringFramework.model.Role;
+import com.example.SpringFramework.repository.CoreRepository;
+import com.example.SpringFramework.service.RoleService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,5 +62,17 @@ public class RoleServiceImpl implements RoleService {
             log.error("User không tồn tại!");
         }
 
+    }
+
+    @Override
+    public Role getRoleByCode(String code) {
+        Role roleDB = roleRepository.getByCode(code);
+        if (roleDB != null) {
+            log.info("Lấy role có code = " + code + " thành công!");
+            return roleDB;
+
+        } else {
+            return null;
+        }
     }
 }
