@@ -18,21 +18,20 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @Column(nullable = false, length = 6)
+    @Column
     @NotEmpty(message = "Không được để trống")
     @NotNull(message = "Không được để trống")
     @NotBlank(message = "Không được để trống")
+    @Size(min = 4, max = 255, message = "Code phải từ 4 đến 255 ký tự")
     String code;
 
     @NotNull(message = "Không được để trống")
     @NotEmpty(message = "Không được để trống")
     @NotBlank(message = "Không được để trống")
-    @Min(value = 6, message = "Không được ngắn hơn 6 ký tự")
-    @Max(value = 255, message = "Không được dài hơn 255 ký tự")
+    @Size(min = 6, max = 255, message = "Name phải từ 6 đến 255 ký tự")
     String name;
 
     @NotNull(message = "Không được để trống")
-    @NotEmpty(message = "Không được để trống")
-    @NotBlank(message = "Không được để trống")
+    @Min(value = 1, message = "Price không được bé hơn 1")
     double price;
 }
