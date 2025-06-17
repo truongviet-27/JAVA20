@@ -89,18 +89,12 @@
                     </a>
                 </button>
                 <button class="btn btn-cancel"
-                        th:attr="data-customer-id=${customer.id}"
-                        onclick="confirmDelete">
-                    Delete
+                >
+                    <a th:href="@{/customer/view/delete/{id}(id=${customer.id})}">
+                        Delete
+                    </a>
                 </button>
-                <script>
-                    function confirmDelete(button) {
-                        const customerId = button.getAttribute("data-customer-id");
-                        if (confirm("Are you sure you want to delete customer ID " + customerId + "?")) {
-                            window.location.href = '/customer/delete/' + customerId;
-                        }
-                    }
-                </script>
+
             </div>
         </td>
     </tr>

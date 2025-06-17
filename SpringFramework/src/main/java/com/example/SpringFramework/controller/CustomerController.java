@@ -24,6 +24,7 @@ public class CustomerController {
     @Autowired
     private RoleService roleService;
 
+    //    MVC
     @GetMapping("/view/get-all")
     public String getAllCustomer(Model model) {
         List<Customer> customers = customerService.getAllCustomer();
@@ -64,21 +65,13 @@ public class CustomerController {
         return "redirect:/customer/view/get-all";
     }
 
-//    @PostMapping("/view/create")
-//    public void createCustomer(Model model, @RequestBody Customer customer) {
-//        customerService.createCustomer(customer);
-//    }
-//
-//    @PutMapping("/view/update")
-//    public Customer updateCustomer(Model model, @RequestBody Customer customer) {
-//        return customerService.updateCustomer(customer);
-//    }
-//
-//    @DeleteMapping("/view/{id}")
-//    public void deleteCustomer(Model model, @PathVariable int id) {
-//        customerService.deleteCustomer(id);
-//    }
+    @GetMapping("/view/delete/{id}")
+    public String deleteCustomerMVC(@PathVariable int id) {
+        customerService.deleteCustomer(id);
+        return "redirect:/customer/view/get-all";
+    }
 
+    //  RESTful API
     @GetMapping("/get-all")
     public List<Customer> getAllCustomer() {
         return customerService.getAllCustomer();
